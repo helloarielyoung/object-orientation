@@ -88,3 +88,27 @@ class QuestionAndAnswer(object):
     def __repr__(self):
         return """Question: {}
 Answer: {}""".format(self.question, self.answer)
+
+
+class Exam(object):
+    """Exam holds exam name and list of questions
+
+    Class attributes:
+    name = the name of the exam
+    questions = a list of the questions and their answers
+    """
+
+    def __init__(self, name):
+        self.name = name
+        self.questions = []
+
+    def __repr__(self):
+        pass
+
+    def add_question(self, question, correct_answer):
+        """Makes a QuestionAndAnswer and adds it to question
+
+        """
+
+        question = QuestionAndAnswer(question, correct_answer)
+        self.questions.append(question)
