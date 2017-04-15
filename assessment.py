@@ -49,15 +49,13 @@ Part 1: Discussion
 
 # Parts 2 through 5:
 # Create your classes and class methods
-class StudentData(object):
+class Student(object):
     """A class for students
 
     Class attributes:
     last_name = student last name
     first_name = student first name
     address = student street address
-
-
 
     """
 
@@ -66,9 +64,11 @@ class StudentData(object):
         self.first_name = first
         self.address = address
 
+    #note: I would not have outdented the Address line, but found that to be the
+    #only way to get the result to line up nicely in the terminal.
     def __repr__(self):
-        print "Name: " + self.last_name + self.first_name
-        print "Address: " + self.address
+        return """Name: {} {}
+Address: {}""".format(self.last_name, self.first_name, self.address)
 
 
 class QuestionAndAnswer(object):
@@ -79,4 +79,4 @@ class QuestionAndAnswer(object):
     correct_answer = the text of the answers
     """
 
-    def_
+    pass
