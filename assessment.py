@@ -71,7 +71,7 @@ class Student(object):
 Address: {}""".format(self.last_name, self.first_name, self.address)
 
 
-class QuestionAndAnswer(object):
+class Question(object):
     """A class of questions and answers
 
     Class attributes:
@@ -81,13 +81,28 @@ class QuestionAndAnswer(object):
 
     def __init__(self, question, answer):
         self.question = question
-        self.answer = answer
+        self.correct_answer = answer
 
     #note: I would not have outdented the Answer line, but found that to be the
     #only way to get the result to line up nicely in the terminal.
     def __repr__(self):
         return """Question: {}
-Answer: {}""".format(self.question, self.answer)
+Answer: {}""".format(self.question, self.correct_answer)
+
+    def ask_and_evaluate(self):
+        """Prompts user for answer to the question
+
+        Returns True or False depending on whether user's answer matches
+        correct_answer.
+
+        """
+
+        answer = raw_input(self.question + " >")
+
+        if answer == self.correct_answer:
+            return True
+        else:
+            return False
 
 
 class Exam(object):
