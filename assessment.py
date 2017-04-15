@@ -79,4 +79,12 @@ class QuestionAndAnswer(object):
     correct_answer = the text of the answers
     """
 
-    pass
+    def __init__(self, question, answer):
+        self.question = question
+        self.answer = answer
+
+    #note: I would not have outdented the Answer line, but found that to be the
+    #only way to get the result to line up nicely in the terminal.
+    def __repr__(self):
+        return """Question: {}
+Answer: {}""".format(self.question, self.answer)
