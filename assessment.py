@@ -121,9 +121,9 @@ class Exam(object):
         pass
 
     def add_question(self, question, correct_answer):
-        """Makes a QuestionAndAnswer and adds it to question
+        """Makes an instance of Question and adds it to question attribute
 
         """
 
-        question = QuestionAndAnswer(question, correct_answer)
+        question = Question(question, correct_answer)
         self.questions.append(question)
