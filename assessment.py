@@ -139,7 +139,6 @@ class Exam(object):
         """administers all the exam's questions and returns user's score
 
         """
-
         score = 0
 
         ##got totally stuck here.  I know the attribute questions has a list
@@ -147,13 +146,13 @@ class Exam(object):
         #and the answer separately.  aaaahhhhhh!
         each_question = {}
         #loop through the questions in questions
-        for question in self.questions:
-            print question
-            each_question = question
-            for each_question in each_question:
-                this_question = each_question['question']
-            #print just the question
-                print this_question
+        for i, question in enumerate(self.questions):
+            question.ask_and_evaluate()
+            # each_question = question
+            # for each_question in each_question:
+            #     this_question = each_question['question']
+            # #print just the question
+            #     print this_question
         #for question, correct_answer in self.questions:
         #    print question, correct_answer
             #ask the question and get answer
