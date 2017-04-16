@@ -83,11 +83,16 @@ class Question(object):
         self.question = question
         self.correct_answer = answer
 
-    #note: I would not have outdented the Answer line, but found that to be the
-    #only way to get the result to line up nicely in the terminal.
     def __repr__(self):
-        return """Question: {}
-Answer: {}""".format(self.question, self.correct_answer)
+        #note:  __repr__ can only return a STRING
+        return "{'%s': '%s'}" % (self.question, self.correct_answer)
+
+        #this format causes exam to return wrong data
+        #return "question: %s, correct_answer: %s" % (self.question, self.correct_answer)
+        #exam.questions
+        # [[question: What day is it?, correct_answer: Saturday, 'Saturday']]
+        #oh my gosh, i had to try so many different formats before I got
+        #it right!
 
     def ask_and_evaluate(self):
         """Prompts user for answer to the question
@@ -118,12 +123,45 @@ class Exam(object):
         self.questions = []
 
     def __repr__(self):
-        pass
+        return self.name + str(self.questions)
 
     def add_question(self, question, correct_answer):
-        """Makes an instance of Question and adds it to question attribute
+        """Makes an instance of Question and add to exam attributes
+
+        Adds question and correct_answer to exam instance's attributes
 
         """
 
-        question = Question(question, correct_answer)
-        self.questions.append(question)
+        new_question = Question(question, correct_answer)
+        self.questions.append(new_question)
+
+    def administer(self):
+        """administers all the exam's questions and returns user's score
+
+        """
+
+        score = 0
+
+        ##got totally stuck here.  I know the attribute questions has a list
+        #of dictionaries in it, but i don't know how to get out the question
+        #and the answer separately.  aaaahhhhhh!
+        each_question = {}
+        #loop through the questions in questions
+        for question in self.questions:
+            print question
+            each_question = question
+            for each_question in each_question:
+                this_question = each_question['question']
+            #print just the question
+                print this_question
+        #for question, correct_answer in self.questions:
+        #    print question, correct_answer
+            #ask the question and get answer
+            #answer = question.ask_and_evaluate()
+            #keep track of the score
+            #if answer:
+            #    score += 1
+
+        #return the score
+        return score
+        #will need to change this to a decimal percentage of score/count
