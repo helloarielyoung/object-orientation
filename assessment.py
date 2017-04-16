@@ -139,28 +139,19 @@ class Exam(object):
         """administers all the exam's questions and returns user's score
 
         """
+        count = 0
         score = 0
 
-        ##got totally stuck here.  I know the attribute questions has a list
-        #of dictionaries in it, but i don't know how to get out the question
-        #and the answer separately.  aaaahhhhhh!
-        each_question = {}
         #loop through the questions in questions
         for i, question in enumerate(self.questions):
-            question.ask_and_evaluate()
-            # each_question = question
-            # for each_question in each_question:
-            #     this_question = each_question['question']
-            # #print just the question
-            #     print this_question
-        #for question, correct_answer in self.questions:
-        #    print question, correct_answer
             #ask the question and get answer
-            #answer = question.ask_and_evaluate()
+            answer = question.ask_and_evaluate()
+            #keep track of questions
+            count += 1
             #keep track of the score
-            #if answer:
-            #    score += 1
+            if answer:
+                score += 1
 
-        #return the score
-        return score
+        #return the score as a percentage
+        return (float(score) / count) * 100
         #will need to change this to a decimal percentage of score/count
