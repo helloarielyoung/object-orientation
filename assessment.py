@@ -155,3 +155,47 @@ class Exam(object):
         #return the score as a percentage
         return (float(score) / count) * 100
         #will need to change this to a decimal percentage of score/count
+
+
+class StudentExam(object):
+    """Stores a student, an exam, student's score for the exam"""
+    score = 0
+
+    def __init__(self, student, exam):
+        self.student = student
+        self.exam = exam
+
+    def __repr__(self):
+        return "Student: %s, Exam: %s, Score: %s" % (self.student, self.exam,
+                                                     str(self.score))
+
+    def take_test(self, student, exam):
+        """Admisters the exam, assigns the score to the StudentExam instance"""
+
+        self.score = exam.administer()
+        print "Your score:  " + str(self.score)
+
+
+def example():
+    """Creates an example exam
+
+    Creates an exam
+    Adds a few questions to the exam
+    Creates a student
+    Instantiates a Student exam, passing the student and exam just created as
+      arguments
+    Administers the test for that student usint take_test method
+    """
+    #create an exam
+    exam1 = Exam('midterm')
+    #add questions to the exam
+    exam1.add_question("What day is it", "Sunday")
+    exam1.add_question("What month is it?", "April")
+
+    #Create a student
+    student1 = Student("Smith", "Joe", "120 Main St")
+
+    #Instantiate Student exam
+    student_exam1 = StudentExam(student1, exam1)
+    #administer the exam
+    student_exam1.take_test(student_exam1, exam1)
