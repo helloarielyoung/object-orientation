@@ -218,20 +218,22 @@ def example():
 
 
 class Quiz(Exam):
-    """Stores a student, a quiz, student's score for the quiz.
+    """Quiz holds quiz name and list of questions.
 
-    Inherits from Exam, but overrides __repr_ to say "Quiz" and
-    overrides administer to return score as pass/fail (50% or more to pass)
-    rather than a percentage.
+    Inherits from Exam, overrides administer to change the user's score
+    from percentage to pass/fail
+
+    Class attributes:
+    name = the name of the quiz
+    questions = a list of the questions and their answers
 
     Public methods:
+    add_question(question, correct_answer)
     administer()
-
     """
 
     def __repr__(self):
-        return "Student: %s, Quiz: %s, Score: %s" % (self.student, self.exam,
-                                                     str(self.score))
+        return self.name + str(self.questions)
 
     def administer(self):
         """administers all the exam's questions and returns user's score."""
