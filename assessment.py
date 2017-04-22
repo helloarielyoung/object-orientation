@@ -21,6 +21,8 @@ Part 1: Discussion
 
 2. What is a class?
     A class is a type of thing.
+    Should also have said:  a class is a blueprint description of objects
+    including their methods and attributes.
 
 3. What is an instance attribute?
     It is an attibute of an instance of a class.  When you change the value,
@@ -106,10 +108,12 @@ class Question(object):
 
         answer = raw_input(self.question + " >")
 
-        if answer == self.correct_answer:
-            return True
-        else:
-            return False
+        #this works, but even more simple way is below
+        # if answer == self.correct_answer:
+        #     return True
+        # else:
+        #     return False
+        return answer == self.correct_answer
 
 
 class Exam(object):
@@ -184,7 +188,7 @@ class StudentExam(object):
         return "Student: %s, Exam: %s, Score: %s" % (self.student, self.exam,
                                                      str(self.score))
 
-    def take_test(self, student, exam):
+    def take_test(self):  #removed incorrect parameters - alreayd have student & exam as class attributes
         """Admisters the exam, assigns the score to the StudentExam instance"""
 
         self.score = exam.administer()
@@ -238,25 +242,28 @@ class Quiz(Exam):
     def administer(self):
         """administers all the exam's questions and returns user's score."""
 
-        count = 0
-        score = 0
+        #This worked, but more elegant way is below using Super
+        # count = 0
+        # score = 0
 
-        #loop through the questions in questions
-        for i, question in enumerate(self.questions):
-            #ask the question and get answer
-            answer = question.ask_and_evaluate()
-            #keep track of questions
-            count += 1
-            #keep track of the score
-            if answer:
-                score += 1
+        # #loop through the questions in questions
+        # for i, question in enumerate(self.questions):
+        #     #ask the question and get answer
+        #     answer = question.ask_and_evaluate()
+        #     #keep track of questions
+        #     count += 1
+        #     #keep track of the score
+        #     if answer:
+        #         score += 1
 
-        #calculate percentage
-        score = (float(score) / count) * 100
-        if score > 50:
+        # #calculate percentage
+        # score = (float(score) / count) * 100
+
+        super(Quiz, self).administer()
+
+        if self.score >= 50:
             return "pass"
-        else:
-            return "fail"
+        return "fail"
 
 
 class StudentQuiz(object):
